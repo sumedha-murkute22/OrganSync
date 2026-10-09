@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OrganSync – Organ Donor–Recipient Coordination Platform</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Persistent Left Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="brand-row">
+          <div class="brand-glyph">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+              <path d="M12 5v14"/>
+              <path d="M5 12h14"/>
+            </svg>
+          </div>
+          <div>
+            <div class="brand-name">OrganSync</div>
+            <div class="brand-sub">Coordination Platform</div>
+          </div>
+        </div>
+        <div class="facility-context">
+          <span class="facility-label">National Operations Grid</span>
+          <div class="facility-name">NOTTO &bull; MoHFW Apex Coordination (AIIMS / SOTTO)</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">CLINICAL OPERATIONS</div>
+        <button class="nav-link active" data-view="overview">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+          <span>Operations Overview</span>
+        </button>
+        <button class="nav-link" data-view="intake">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-6"/><path d="M9 15h6"/></svg>
+          <span>Organ Intake & Verification</span>
+          <span class="nav-count-badge warning" id="badge-pending-intake">1</span>
+        </button>
+        <button class="nav-link" data-view="recipients">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Recipient Registry</span>
+          <span class="nav-count-badge" id="badge-recipients-total">18</span>
+        </button>
+        <button class="nav-link" data-view="match-review">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+          <span>Match Review</span>
+          <span class="nav-count-badge live" id="badge-match-review">C99</span>
+        </button>
+
+        <div class="nav-section-title">LOGISTICS & NETWORK</div>
+        <button class="nav-link" data-view="network">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><line x1="8.5" y1="7.5" x2="15.5" y2="16.5"/><line x1="8.5" y1="16.5" x2="15.5" y2="7.5"/></svg>
+          <span>Compatibility Network</span>
+        </button>
+        <button class="nav-link" data-view="transports">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="16" height="13" x="4" y="5" rx="2"/><path d="M16 2v3"/><path d="M8 2v3"/><path d="M10 14h4"/></svg>
+          <span>Transport Operations</span>
+          <span class="nav-count-badge active" id="badge-active-transports">3</span>
+        </button>
+        <button class="nav-link" data-view="governance">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>Governance & Audit</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-badge">
+          <div class="user-avatar">VB</div>
+          <div class="user-meta">
+            <div class="user-name">Dr. V. K. Bansal, MS</div>
+            <div class="user-role">Director, NOTTO Directorate (MoHFW)</div>
+          </div>
+        </div>
+        <div class="system-status-indicator">
+          <span class="dot-online"></span>
+          <span>C Engine Operational &bull; 24ms</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Operational Main Content -->
+    <main class="main-body">
+      <!-- Operational Top Bar -->
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <div class="view-heading-group">
+            <h1 id="view-title">Operations Overview</h1>
+            <span class="view-breadcrumb" id="view-breadcrumb">OrganSync / Operations Overview</span>
+          </div>
+        </div>
+        <div class="top-bar-right">
+          <!-- Institutional Safeguard Banner -->
+          <div class="safeguard-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span><strong>Clinical Safeguard:</strong> Coordination support system. Allocations require authorized clinical approval.</span>
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="openIntakeModal()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Register Donated Organ
+          </button>
+          <button class="btn btn-primary btn-sm" onclick="navigateTo('match-review'); triggerMatchReview();">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Run Compatibility Review
+          </button>
+        </div>
+      </header>
+
+      <div class="content-container">
+
+        <!-- ================================================================= -->
+        <!-- SECTION 1: OPERATIONS OVERVIEW                                    -->
+        <!-- ================================================================= -->
+        <section id="panel-overview" class="view-panel active">
+          <!-- Operational Safeguard Notice -->
+          <div class="clinical-notice-banner">
+            <div class="notice-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <div class="notice-text">
+              <strong>Clinical Review Required for All Candidate Recommendations</strong>
+              <p>OrganSync algorithmically scores candidate compatibility and ischemic viability in native C99. Allocation recommendations are non-autonomous and strictly require clinical dual-signature sign-off by the attending transplant surgeon, histocompatibility director, and compliance with regional OPO allocation protocols.</p>
+            </div>
+            <div class="notice-badge">Policy Compliant</div>
+          </div>
+
+          <!-- KPI Metric Cards -->
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-label">Verified Organs Available</div>
+              <div class="kpi-value-row">
+                <span class="kpi-val" id="kpi-verified-organs">11</span>
+                <span class="kpi-sub" id="kpi-pending-organs">(1 Pending Verification)</span>
+              </div>
+              <div class="kpi-footer">Laboratory checklist verified</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-label">Active Recipient Cases</div>
+              <div class="kpi-value-row">
+                <span class="kpi-val" id="kpi-active-recipients">18</span>
+                <span class="kpi-sub">Across 5 regional centers</span>
+              </div>
+              <div class="kpi-footer">Standard waitlist registry</div>
+            </div>
+
+            <div class="kpi-card alert-rose">
+              <div class="kpi-label">Critical Cases (Status 1A)</div>
+              <div class="kpi-value-row">
+                <span class="kpi-val text-rose" id="kpi-critical-cases">6</span>
+                <span class="kpi-badge-alert">Expedited</span>
+              </div>
+              <div class="kpi-footer text-rose">Mechanical support / ECMO / ICU</div>
+            </div>
+
+            <div class="kpi-card alert-amber">
+              <div class="kpi-label">Organs Nearing Expiry (&le; 6h)</div>
+              <div class="kpi-value-row">
+                <span class="kpi-val text-amber" id="kpi-expiring-organs">4</span>
+                <span class="kpi-badge-alert">Time Sensitive</span>
+              </div>
+              <div class="kpi-footer text-amber">Active cold-ischemia countdown</div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-label">Active Transport Missions</div>
+              <div class="kpi-value-row">
+                <span class="kpi-val text-blue" id="kpi-active-transports">3</span>
+                <span class="kpi-sub">Cold-chain telemetry active</span>
+              </div>
+              <div class="kpi-footer">Air & dedicated ground escorts</div>
+            </div>
+          </div>
+
+          <!-- Split: Active Allocation Queue & Verification Summary -->
+          <div class="ops-split-row">
+            <!-- Active Allocation Queue -->
+            <div class="panel-box flex-3">
+              <div class="panel-header">
+                <div class="panel-title-group">
+                  <h3>Active Allocation Queue</h3>
+                  <span class="panel-desc">Time-sensitive cases undergoing candidate ranking and clinical evaluation</span>
+                </div>
+                <button class="btn btn-outline btn-sm" onclick="navigateTo('match-review')">View Match Engine &rarr;</button>
+              </div>
+              <div class="table-wrap">
+                <table class="compact-table">
+                  <thead>
+                    <tr>
+                      <th>Organ Case ID</th>
+                      <th>Organ</th>
+                      <th>Blood</th>
+                      <th>Viability Window</th>
+                      <th>Candidate Match Status</th>
+                      <th>Reviewer State</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="overview-queue-tbody">
+                    <!-- Populated dynamically via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Organ Verification Summary -->
+            <div class="panel-box flex-2">
+              <div class="panel-header">
+                <div class="panel-title-group">
+                  <h3>Intake Verification Summary</h3>
+                  <span class="panel-desc">Clinical and chain-of-custody checks across regional inventory</span>
+                </div>
+              </div>
+              <div class="checklist-summary-card">
+                <div class="summary-check-item">
+                  <div class="check-meta">
+                    <span class="check-title">Donor Authorization & Consent</span>
+                    <span class="check-pct">12 / 12 (100%)</span>
+                  </div>
+                  <div class="progress-bar"><div class="fill" style="width: 100%;"></div></div>
+                </div>
+
+                <div class="summary-check-item">
+                  <div class="check-meta">
+                    <span class="check-title">Dual-Signature ABO/Rh Confirmation</span>
+                    <span class="check-pct">12 / 12 (100%)</span>
+                  </div>
+                  <div class="progress-bar"><div class="fill" style="width: 100%;"></div></div>
+                </div>
+
+                <div class="summary-check-item">
+                  <div class="check-meta">
+                    <span class="check-title">Infectious Disease NAT Panel</span>
+                    <span class="check-pct">11 / 12 (91.7%)</span>
+                  </div>
+                  <div class="progress-bar"><div class="fill warning" style="width: 91.7%;"></div></div>
+                </div>
+
+                <div class="summary-check-item">
+                  <div class="check-meta">
+                    <span class="check-title">Cold-Chain Telemetry Synchronization</span>
+                    <span class="check-pct">12 / 12 (100%)</span>
+                  </div>
+                  <div class="progress-bar"><div class="fill" style="width: 100%;"></div></div>
+                </div>
+
+                <div class="verification-notice-box">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                  <span>1 organ case (ORG-112 Pancreas) requires laboratory sign-off before candidate allocation can proceed.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Time-Sensitive Inventory Table -->
+          <div class="panel-box">
+            <div class="panel-header">
+              <div class="panel-title-group">
+                <h3>Time-Sensitive Available Inventory</h3>
+                <span class="panel-desc">Donor organs sorted by remaining ischemic preservation margin</span>
+              </div>
+              <div class="filter-controls-row">
+                <input type="text" id="inventory-search" placeholder="Search case ID, hospital, blood group..." oninput="filterInventoryTable()">
+                <button class="btn btn-secondary btn-sm" onclick="openIntakeModal()">+ Record New Intake</button>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table class="compact-table" id="table-inventory">
+                <thead>
+                  <tr>
+                    <th>Case ID</th>
+                    <th>Organ Type</th>
+                    <th>ABO / Rh</th>
+                    <th>Donor Age</th>
+                    <th>Recovery Facility</th>
+                    <th>Preservation Method</th>
+                    <th>Viability Remaining</th>
+                    <th>Container Temp</th>
+                    <th>Verification State</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="inventory-tbody">
+                  <!-- Populated via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- SECTION 2: ORGAN INTAKE & VERIFICATION                            -->
+        <!-- ================================================================= -->
+        <section id="panel-intake" class="view-panel">
+          <div class="section-top-row">
+            <div>
+              <h2>Organ Intake & Verification Management</h2>
+              <p class="section-lead">Manage surgical procurement recovery logs, verify prerequisite clinical documentation, and complete dual-signature authorization.</p>
+            </div>
+            <button class="btn btn-primary" onclick="openIntakeModal()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Initiate Organ Intake Record
+            </button>
+          </div>
+
+          <!-- Inventory and Verification Status Cards -->
+          <div class="intake-cards-grid" id="intake-cards-container">
+            <!-- Populated via JS -->
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- SECTION 3: RECIPIENT REGISTRY                                     -->
+        <!-- ================================================================= -->
+        <section id="panel-recipients" class="view-panel">
+          <div class="panel-box">
+            <div class="panel-header">
+              <div class="panel-title-group">
+                <h2>Recipient Candidate Registry</h2>
+                <span class="panel-desc">Secure clinical registry of candidates awaiting solid organ transplantation</span>
+              </div>
+              <button class="btn btn-primary btn-sm" onclick="openRecipientModal()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Register Recipient Candidate
+              </button>
+            </div>
+
+            <!-- Registry Filter Toolbar -->
+            <div class="table-toolbar">
+              <div class="search-input-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" id="recipient-registry-search" placeholder="Filter by case ID, patient name, hospital, physician..." oninput="filterRecipientRegistry()">
+              </div>
+              <div class="toolbar-dropdowns">
+                <select id="filter-rec-organ" onchange="filterRecipientRegistry()">
+                  <option value="">All Organs</option>
+                  <option value="Heart">Heart</option>
+                  <option value="Kidney">Kidney</option>
+                  <option value="Liver">Liver</option>
+                  <option value="Lungs">Lungs</option>
+                  <option value="Pancreas">Pancreas</option>
+                </select>
+                <select id="filter-rec-blood" onchange="filterRecipientRegistry()">
+                  <option value="">All Blood Groups</option>
+                  <option value="O-">O-</option>
+                  <option value="O+">O+</option>
+                  <option value="A-">A-</option>
+                  <option value="A+">A+</option>
+                  <option value="B-">B-</option>
+                  <option value="B+">B+</option>
+                  <option value="AB-">AB-</option>
+                  <option value="AB+">AB+</option>
+                </select>
+                <select id="filter-rec-urgency" onchange="filterRecipientRegistry()">
+                  <option value="">All Urgency Tiers</option>
+                  <option value="Critical">Status 1A (Critical)</option>
+                  <option value="High">Status 1B (High)</option>
+                  <option value="Medium">Status 2 (Medium)</option>
+                  <option value="Low">Status 3 (Elective)</option>
+                </select>
+                <select id="filter-rec-status" onchange="filterRecipientRegistry()">
+                  <option value="">All Registry Statuses</option>
+                  <option value="Waiting">Waiting</option>
+                  <option value="Under Review">Under Review</option>
+                  <option value="Matched">Matched</option>
+                  <option value="Transplanted">Transplanted</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table class="compact-table" id="table-registry">
+                <thead>
+                  <tr>
+                    <th>Case ID</th>
+                    <th>Patient Name & Demographics</th>
+                    <th>Required Organ</th>
+                    <th>ABO/Rh</th>
+                    <th>Urgency Status</th>
+                    <th>Waitlist Days</th>
+                    <th>Treating Facility</th>
+                    <th>Clinical Readiness</th>
+                    <th>Status</th>
+                    <th>Clinical Review</th>
+                  </tr>
+                </thead>
+                <tbody id="registry-tbody">
+                  <!-- Populated via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- SECTION 4: MATCH REVIEW                                           -->
+        <!-- ================================================================= -->
+        <section id="panel-match-review" class="view-panel">
+          <div class="panel-box">
+            <div class="panel-header">
+              <div class="panel-title-group">
+                <h2>Clinical Compatibility & Allocation Review</h2>
+                <span class="panel-desc">Algorithmic scoring in C99 incorporating ABO compatibility, HLA tissue similarity, clinical urgency, and cold-ischemia transit constraints</span>
+              </div>
+              <div class="header-action-group">
+                <button class="btn btn-primary" id="btn-run-match-review" onclick="triggerMatchReview()">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                  Run Compatibility Review
+                </button>
+              </div>
+            </div>
+
+            <!-- Algorithm Safeguard Banner -->
+            <div class="policy-disclaimer-card">
+              <div class="policy-header">
+                <span class="badge-policy">Mandatory Clinical Rule</span>
+                <strong>Exact Organ-Type Match & ABO Compatibility Enforced</strong>
+              </div>
+              <p>Candidates are evaluated only if exact organ match and non-reactive ABO blood compatibility are proven. Incompatible pairs are rejected at the C engine kernel level. Final organ allocation requires multidisciplinary surgical acceptance.</p>
+            </div>
+
+            <!-- Results Summary Metric Strip -->
+            <div id="match-review-metrics" class="metrics-strip hidden">
+              <div class="strip-item">
+                <span class="lbl">Eligible Matches Formed</span>
+                <span class="val" id="rev-match-count">0</span>
+              </div>
+              <div class="strip-item">
+                <span class="lbl">Average Compatibility Fit</span>
+                <span class="val text-blue" id="rev-avg-score">0.0%</span>
+              </div>
+              <div class="strip-item">
+                <span class="lbl">Unallocated Verified Organs</span>
+                <span class="val" id="rev-unassigned-organs">0</span>
+              </div>
+              <div class="strip-item">
+                <span class="lbl">Waitlist Candidates Evaluated</span>
+                <span class="val" id="rev-evaluated-recs">18</span>
+              </div>
+              <div class="strip-item">
+                <span class="lbl">Execution Core</span>
+                <span class="val text-teal">C99 Binary</span>
+              </div>
+            </div>
+
+            <!-- Match Candidate Cards List -->
+            <div id="match-candidate-cards" class="candidate-cards-list">
+              <div class="empty-clinical-state">
+                <div class="empty-glyph">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                </div>
+                <h4>Compatibility Engine Ready for Evaluation</h4>
+                <p>Click "Run Compatibility Review" to trigger the verified C99 greedy allocation engine against active donor and recipient records.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- SECTION 5: COMPATIBILITY NETWORK                                  -->
+        <!-- ================================================================= -->
+        <section id="panel-network" class="view-panel">
+          <div class="panel-box">
+            <div class="panel-header">
+              <div class="panel-title-group">
+                <h2>Compatibility Pathway Network</h2>
+                <span class="panel-desc">Bipartite compatibility pathways between Partition U (Verified Organs) and Partition V (Eligible Recipients)</span>
+              </div>
+              <div class="network-legend">
+                <span class="legend-dot high"></span> Fit &ge; 85%
+                <span class="legend-dot med"></span> Fit 70-84%
+                <span class="legend-dot low"></span> Fit &lt; 70%
+              </div>
+            </div>
+
+            <!-- Network Metrics Header -->
+            <div class="network-metrics-strip">
+              <div class="net-metric">
+                <span class="label">Verified Donor Organs</span>
+                <strong id="net-metric-organs">0</strong>
+              </div>
+              <div class="net-metric">
+                <span class="label">Eligible Waitlist Recipients</span>
+                <strong id="net-metric-recipients">0</strong>
+              </div>
+              <div class="net-metric">
+                <span class="label">Valid Compatibility Pathways</span>
+                <strong class="text-blue" id="net-metric-pathways">0</strong>
+              </div>
+              <div class="net-metric">
+                <span class="label">Incompatible Connections</span>
+                <strong class="text-emerald">0 (Strictly Excluded)</strong>
+              </div>
+            </div>
+
+            <!-- Interactive Bipartite Canvas Visualization -->
+            <div class="network-canvas-wrapper">
+              <canvas id="clinicalBipartiteCanvas" width="1120" height="660"></canvas>
+              <div id="network-tooltip" class="network-tooltip hidden"></div>
+            </div>
+
+            <!-- Selected Pathway Clinical Detail Panel -->
+            <div id="pathway-detail-panel" class="pathway-detail-box hidden">
+              <div class="pathway-header">
+                <div class="pathway-title" id="pathway-detail-title">Pathway Clinical Review</div>
+                <button class="btn-close-sm" onclick="closePathwayPanel()">&times;</button>
+              </div>
+              <div class="pathway-content" id="pathway-detail-content">
+                <!-- Populated dynamically on pathway click -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- SECTION 6: TRANSPORT OPERATIONS                                   -->
+        <!-- ================================================================= -->
+        <section id="panel-transports" class="view-panel">
+          <div class="panel-box">
+            <div class="panel-header">
+              <div class="panel-title-group">
+                <h2>Cold-Chain Transport Logistics Operations</h2>
+                <span class="panel-desc">Active custody missions, live container temperature telemetry, and chain-of-custody transfer milestones</span>
+              </div>
+              <div class="telemetry-badge-live">
+                <span class="dot-online"></span>
+                <span>Cellular & GPS Telemetry Online</span>
+              </div>
+            </div>
+
+            <!-- Transport Missions Container -->
+            <div id="transports-list-container" class="transports-list">
+              <!-- Populated via JS -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- SECTION 7: GOVERNANCE & AUDIT                                     -->
+        <!-- ================================================================= -->
+        <section id="panel-governance" class="view-panel">
+          <div class="section-top-row">
+            <div>
+              <h2>Governance, Compliance & Security Ledger</h2>
+              <p class="section-lead">Tamper-evident audit trail, role-based access records, and regulatory compliance logs.</p>
+            </div>
+            <button class="btn btn-outline" onclick="exportAuditLedger()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Export Audit Log (JSON)
+            </button>
+          </div>
+
+          <!-- Governance Grid Cards -->
+          <div class="governance-grid">
+            <div class="gov-card">
+              <div class="gov-card-header">
+                <h4>Role-Based Access Control (RBAC)</h4>
+                <span class="badge-role">Active Session</span>
+              </div>
+              <div class="rbac-list">
+                <div class="rbac-item">
+                  <strong>Dr. V. K. Bansal, MS</strong>
+                  <span>Director, NOTTO Directorate &bull; Apex Allocation Clearance</span>
+                </div>
+                <div class="rbac-item">
+                  <strong>Dr. R. K. Sharma, MCh</strong>
+                  <span>Chief Transplant Surgeon (AIIMS) &bull; THOTA Form 8 Certification</span>
+                </div>
+                <div class="rbac-item">
+                  <strong>Inspector V. Singh</strong>
+                  <span>Delhi & Gurugram Traffic Police &bull; Green Corridor Escort Command</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="gov-card">
+              <div class="gov-card-header">
+                <h4>Compliance & Policy Adherence</h4>
+                <span class="badge-compliant">THOTA 1994 Active</span>
+              </div>
+              <ul class="compliance-list">
+                <li>Strict THOTA 1994 Form 8 Brain Stem Death and Form 10 Consent validation.</li>
+                <li>NOTTO / ROTTO / SOTTO national waitlist prioritization rules enforced.</li>
+                <li>Green Corridor traffic telemetry with continuous cold-chain monitoring (2.0°C – 6.0°C).</li>
+                <li>Cryptographic SHA-256 audit event chaining for legal compliance under MoHFW.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Tamper-Evident Audit Ledger Table -->
+          <div class="panel-box mt-3">
+            <div class="panel-header">
+              <div class="panel-title-group">
+                <h3>Tamper-Evident Operational Audit Trail</h3>
+                <span class="panel-desc">Chronological cryptographic log of clinical verifications, matches, and custody transfers</span>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table class="compact-table">
+                <thead>
+                  <tr>
+                    <th>Event ID</th>
+                    <th>Timestamp (UTC)</th>
+                    <th>Event Type</th>
+                    <th>Clinician / Operator</th>
+                    <th>Target Case</th>
+                    <th>Clinical Details</th>
+                    <th>Cryptographic Digest (SHA-256)</th>
+                  </tr>
+                </thead>
+                <tbody id="audit-ledger-tbody">
+                  <!-- Populated via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- MODAL 1: ORGAN INTAKE FORM & CHECKLIST -->
+  <div id="modal-organ-intake" class="modal-backdrop hidden">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-header">
+        <div>
+          <h3 id="modal-intake-title">Organ Intake & Verification Registration</h3>
+          <span class="modal-subtitle">Record recovery surgical assessment, laboratory typing, and packaging verification</span>
+        </div>
+        <button class="btn-close" onclick="closeIntakeModal()">&times;</button>
+      </div>
+
+      <form id="form-organ-intake" onsubmit="submitOrganIntake(event)">
+        <input type="hidden" id="intake-organ-id">
+        <div class="form-grid-3">
+          <div class="form-group">
+            <label>Organ Type *</label>
+            <select id="intake-organ-type" required>
+              <option value="Heart">Heart</option>
+              <option value="Kidney">Kidney</option>
+              <option value="Liver">Liver</option>
+              <option value="Lungs">Lungs</option>
+              <option value="Pancreas">Pancreas</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Donor ABO / Rh Blood Group *</label>
+            <select id="intake-blood-group" required>
+              <option value="O-">O- (Universal Donor)</option>
+              <option value="O+">O+</option>
+              <option value="A-">A-</option>
+              <option value="A+">A+</option>
+              <option value="B-">B-</option>
+              <option value="B+">B+</option>
+              <option value="AB-">AB-</option>
+              <option value="AB+">AB+</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Donor Age (Years) *</label>
+            <input type="number" id="intake-donor-age" min="1" max="85" value="32" required>
+          </div>
+        </div>
+
+        <div class="form-grid-3">
+          <div class="form-group">
+            <label>Donor Case Identifier</label>
+            <input type="text" id="intake-donor-id" placeholder="e.g. DNR-2026-891">
+          </div>
+          <div class="form-group">
+            <label>HLA / Tissue Score (0 - 100) *</label>
+            <input type="number" id="intake-hla-score" min="0" max="100" value="85" required>
+          </div>
+          <div class="form-group">
+            <label>Viability Window (Hours Remaining) *</label>
+            <input type="number" step="0.1" id="intake-shelf-life" min="1.0" max="48.0" value="12.0" required>
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label>Recovery Hospital & Surgical Facility *</label>
+            <input type="text" id="intake-hospital" placeholder="e.g. AIIMS Trauma Center, New Delhi / Medanta Gurugram" required>
+          </div>
+          <div class="form-group">
+            <label>Preservation Method *</label>
+            <select id="intake-preservation" required>
+              <option value="Hypothermic Machine Perfusion (HMP - LifePort)">Hypothermic Machine Perfusion (HMP - LifePort)</option>
+              <option value="Static Cold Storage (SCS - University of Wisconsin)">Static Cold Storage (SCS - 4°C Belzer UW)</option>
+              <option value="Normothermic Machine Perfusion (NMP - TransMedics OCS)">Normothermic Machine Perfusion (NMP - TransMedics OCS)</option>
+              <option value="Ex-Vivo Lung Perfusion (EVLP - XPS)">Ex-Vivo Lung Perfusion (EVLP - XPS)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label>Cold-Chain Container ID</label>
+            <input type="text" id="intake-container-id" placeholder="e.g. NOTTO-OCS-HRT-05 / NOTTO-CC-BOX-102">
+          </div>
+          <div class="form-group">
+            <label>Laboratory Reference ID</label>
+            <input type="text" id="intake-lab-ref" placeholder="e.g. AIIMS-HLA-2026-9045 / NOTTO-REF-881">
+          </div>
+        </div>
+
+        <div class="checklist-section">
+          <h4>Prerequisite Clinical Verification Checklist</h4>
+          <p class="checklist-sub">All items must be confirmed before organ can be verified for active candidate allocation.</p>
+          <div class="checklist-grid">
+            <label class="check-box-label"><input type="checkbox" id="chk-consent" checked> Donor authorization & signed consent documentation</label>
+            <label class="check-box-label"><input type="checkbox" id="chk-abo" checked> Dual-signature ABO/Rh confirmation completed</label>
+            <label class="check-box-label"><input type="checkbox" id="chk-hla" checked> HLA / tissue typing alleles validated</label>
+            <label class="check-box-label"><input type="checkbox" id="chk-infectious" checked> Infectious-disease screening panel non-reactive</label>
+            <label class="check-box-label"><input type="checkbox" id="chk-crossmatch" checked> Crossmatch serum sample available</label>
+            <label class="check-box-label"><input type="checkbox" id="chk-biopsy" checked> Organ recovery quality & biopsy assessment passed</label>
+            <label class="check-box-label"><input type="checkbox" id="chk-custody" checked> Chain-of-custody barcode scan verified</label>
+            <label class="check-box-label"><input type="checkbox" id="chk-telemetry" checked> Preservation telemetry sensor sealed and active</label>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeIntakeModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Organ Record</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL 2: RECIPIENT REGISTRATION -->
+  <div id="modal-recipient-reg" class="modal-backdrop hidden">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <h3>Register Waitlist Candidate</h3>
+          <span class="modal-subtitle">Enroll patient into institutional transplant allocation registry</span>
+        </div>
+        <button class="btn-close" onclick="closeRecipientModal()">&times;</button>
+      </div>
+
+      <form id="form-recipient-reg" onsubmit="submitRecipientRegistration(event)">
+        <input type="hidden" id="reg-rec-id">
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label>Patient Full Name *</label>
+            <input type="text" id="reg-name" placeholder="e.g. Sarah Jenkins" required>
+          </div>
+          <div class="form-group">
+            <label>Required Organ *</label>
+            <select id="reg-organ" required>
+              <option value="Heart">Heart</option>
+              <option value="Kidney">Kidney</option>
+              <option value="Liver">Liver</option>
+              <option value="Lungs">Lungs</option>
+              <option value="Pancreas">Pancreas</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-grid-3">
+          <div class="form-group">
+            <label>ABO / Rh Blood Group *</label>
+            <select id="reg-blood" required>
+              <option value="O-">O-</option>
+              <option value="O+">O+</option>
+              <option value="A-">A-</option>
+              <option value="A+">A+</option>
+              <option value="B-">B-</option>
+              <option value="B+">B+</option>
+              <option value="AB-">AB-</option>
+              <option value="AB+">AB+</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Clinical Urgency Tier *</label>
+            <select id="reg-urgency" required>
+              <option value="Critical">Status 1A (Critical)</option>
+              <option value="High">Status 1B (High)</option>
+              <option value="Medium">Status 2 (Medium)</option>
+              <option value="Low">Status 3 (Elective)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Age *</label>
+            <input type="number" id="reg-age" min="1" max="95" value="45" required>
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label>Waitlist Seniority (Days) *</label>
+            <input type="number" id="reg-wait" min="1" max="3000" value="180" required>
+          </div>
+          <div class="form-group">
+            <label>Treating Transplant Hospital *</label>
+            <input type="text" id="reg-hospital" placeholder="e.g. Mount Sinai Hospital, New York" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Treating Physician / Surgeon</label>
+          <input type="text" id="reg-physician" placeholder="e.g. Dr. A. Chen, MD">
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeRecipientModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Enroll Candidate</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL 3: RECIPIENT CLINICAL DETAIL DRAWER -->
+  <div id="modal-recipient-drawer" class="modal-backdrop hidden">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-header">
+        <div>
+          <h3 id="drawer-rec-name">Recipient Clinical Profile</h3>
+          <span class="modal-subtitle" id="drawer-rec-id">REC-2026-001</span>
+        </div>
+        <button class="btn-close" onclick="closeRecipientDrawer()">&times;</button>
+      </div>
+      <div class="drawer-body" id="drawer-rec-body">
+        <!-- Populated via JS -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="closeRecipientDrawer()">Close</button>
+        <button class="btn btn-primary" onclick="closeRecipientDrawer(); navigateTo('match-review'); triggerMatchReview();">Check Compatibility</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 4: MATCH ACTION MODAL (REVIEW / APPROVE / HOLD) -->
+  <div id="modal-match-action" class="modal-backdrop hidden">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <h3 id="modal-match-action-title">Clinical Match Action</h3>
+          <span class="modal-subtitle" id="modal-match-action-sub">Record physician decision and rationale</span>
+        </div>
+        <button class="btn-close" onclick="closeMatchActionModal()">&times;</button>
+      </div>
+
+      <div class="modal-content-padded">
+        <div class="match-summary-preview" id="match-summary-preview">
+          <!-- Populated via JS -->
+        </div>
+        <div class="form-group mt-3">
+          <label>Documented Clinical Justification & Operating Notes *</label>
+          <textarea id="match-action-notes" rows="3" placeholder="Document surgical review, crossmatch readiness, and logistical coordination rationale..." required></textarea>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" onclick="closeMatchActionModal()">Cancel</button>
+        <button type="button" class="btn btn-primary" id="btn-confirm-match-action">Confirm Decision</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

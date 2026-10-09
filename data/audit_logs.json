@@ -1,0 +1,122 @@
+[
+  {
+    "event_id": "AUD-9034",
+    "timestamp": "2026-10-09T06:31:25Z",
+    "event_type": "MATCH_EVALUATION",
+    "actor": "Dr. V. K. Bansal, MS",
+    "role": "Director, NOTTO Directorate",
+    "facility": "National Coordination Apex Center, Nirman Bhawan, New Delhi",
+    "target_id": "ALL_ACTIVE",
+    "details": "C99 Greedy matching engine executed. Evaluated candidates under THOTA Act. Matches generated: 11",
+    "verification_status": "Logged",
+    "hash_digest": "c970955f5aeec1dad38455beaef52da05ca2769bdee2fe8bd709ded09adbc173"
+  },
+  {
+    "event_id": "AUD-9033",
+    "timestamp": "2026-10-09T06:31:16Z",
+    "event_type": "MATCH_EVALUATION",
+    "actor": "Dr. V. K. Bansal, MS",
+    "role": "Director, NOTTO Directorate",
+    "facility": "National Coordination Apex Center, Nirman Bhawan, New Delhi",
+    "target_id": "ALL_ACTIVE",
+    "details": "C99 Greedy matching engine executed. Evaluated candidates under THOTA Act. Matches generated: 11",
+    "verification_status": "Logged",
+    "hash_digest": "885e511e70e4cda63e906136cc8b78fb4530eac5e14cd36e10ef95a6836e1c2c"
+  },
+  {
+    "event_id": "AUD-9040",
+    "timestamp": "2026-10-09T07:45:10Z",
+    "event_type": "NOTTO_NATIONAL_CLEARANCE",
+    "actor": "Dr. V. K. Bansal, MS (Director, NOTTO)",
+    "role": "National Apex Transplant Officer",
+    "facility": "NOTTO Directorate, DGHS, Nirman Bhawan, New Delhi",
+    "target_id": "MTR-IND-001",
+    "details": "National Allocation Clearance issued under THOTA Act Section 9. Priority allocated to Status 1A candidate Ananya Iyer (ABHA: 91-4412-8802-1941).",
+    "verification_status": "Approved",
+    "hash_digest": "4a9e52e18fa7d46c8230f3df91104e76a162cc47a7638d17f5449237bc902c11"
+  },
+  {
+    "event_id": "AUD-9039",
+    "timestamp": "2026-10-09T07:12:00Z",
+    "event_type": "GREEN_CORRIDOR_ACTIVATION",
+    "actor": "Inspector V. Singh (Traffic Ops)",
+    "role": "Joint Traffic Escort Coordinator",
+    "facility": "Delhi Traffic Police HQ, Barakhamba Road & Gurugram Traffic Control",
+    "target_id": "TRP-IND-084",
+    "details": "Green Corridor established: AIIMS Trauma Center -> Ring Road -> NH-48 Expressway -> Medanta Gurugram (32.4 km cleared in 24 mins).",
+    "verification_status": "Verified",
+    "hash_digest": "98fb1b22e11ac010a3c9f2208107ef4cba5201c107f9c2d159a68bc288eb19d4"
+  },
+  {
+    "event_id": "AUD-9038",
+    "timestamp": "2026-10-09T06:48:00Z",
+    "event_type": "COLD_CHAIN_TELEMETRY",
+    "actor": "K. Mohan (Clinical Perfusionist)",
+    "role": "Transplant Organ Preservationist",
+    "facility": "AIIMS Trauma Center Perfusion Suite, New Delhi",
+    "target_id": "NOTTO-OCS-HRT-01",
+    "details": "Hermetic seal validated. Machine perfusion active at 4.1\u00b0C (nominal range 2.0-6.0\u00b0C). Real-time GPS/Temp beacon linked to NOTTO Grid.",
+    "verification_status": "Verified",
+    "hash_digest": "789a0cb2357103431b34fabeb6300408ddc2dc459a95b476455509fd4ced4a0b"
+  },
+  {
+    "event_id": "AUD-9037",
+    "timestamp": "2026-10-09T06:30:00Z",
+    "event_type": "THOTA_FORM_8_CERTIFICATION",
+    "actor": "Medical Board: Dr. R. K. Sharma (CTVS), Dr. P. Mehta (Neuro), Dr. A. Rao (Admin), Dr. S. Verma (Med)",
+    "role": "Statutory Brain Stem Death Board",
+    "facility": "AIIMS Trauma Center, New Delhi",
+    "target_id": "ORG-IND-101",
+    "details": "THOTA 1994 Form 8 Brain Stem Death Second Apnea Test certified at 06:15 IST. Mandatory 6-hour interval confirmed.",
+    "verification_status": "Certified",
+    "hash_digest": "3b608ab2f70ecbabd960d7e626339584e481e28d78bb0ade23b51e5d7b68218f"
+  },
+  {
+    "event_id": "AUD-9036",
+    "timestamp": "2026-10-09T05:50:00Z",
+    "event_type": "THOTA_FORM_10_CONSENT",
+    "actor": "Ms. Sunita Roy (Chief Medical Social Worker)",
+    "role": "Transplant Coordinator",
+    "facility": "AIIMS Trauma Center Counseling Unit, New Delhi",
+    "target_id": "DNR-IND-801",
+    "details": "THOTA Form 10 informed consent executed with next-of-kin. Corroborated with Aadhaar biometric verification. Zero commercial conflict.",
+    "verification_status": "Verified",
+    "hash_digest": "b644504b1059aa2cceae1923aaac540f775db0fa0b368611a056aef1913fdabb"
+  },
+  {
+    "event_id": "AUD-9035",
+    "timestamp": "2026-10-09T05:15:00Z",
+    "event_type": "LAB_HLA_CROSSMATCH",
+    "actor": "Dr. N. Sengupta (Chief Immunogeneticist)",
+    "role": "HLA Tissue Typing Lead",
+    "facility": "National Referral Histocompatibility Lab, AIIMS, New Delhi",
+    "target_id": "AIIMS-HLA-2026-9041",
+    "details": "High-resolution NGS HLA typing completed (A*02:01, A*24:02, B*08:01, B*44:02, DRB1*03:01). Complement-dependent cytotoxicity crossmatch negative.",
+    "verification_status": "Verified",
+    "hash_digest": "1786273b0aca727da9629c7157645c8db735b6a85772a256a0d437db13589eeb"
+  },
+  {
+    "event_id": "AUD-9034",
+    "timestamp": "2026-10-09T04:40:00Z",
+    "event_type": "SOTTO_ROTTO_COORDINATION",
+    "actor": "Dr. P. Soundararajan (Member Secretary, TRANSTAN)",
+    "role": "SOTTO Tamil Nadu State Coordinator",
+    "facility": "TRANSTAN Operations Centre, Chennai",
+    "target_id": "ORG-IND-104",
+    "details": "No domestic Status 1 recipient in Tamil Nadu registry. Organ surrendered to ROTTO South / NOTTO National Pool for Inter-State Air Ambulance dispatch.",
+    "verification_status": "Approved",
+    "hash_digest": "5f1a92cb7148293d8b139ec42b9195a62319ef47b3112b947c6198f121bb99e2"
+  },
+  {
+    "event_id": "AUD-9033",
+    "timestamp": "2026-10-09T04:09:20Z",
+    "event_type": "C_ENGINE_ALLOCATION_RUN",
+    "actor": "OrganSync Native C99 Algorithmic Engine",
+    "role": "Deterministic Allocation Kernel",
+    "facility": "NOTTO National Informatics Centre (NIC) Server Cluster",
+    "target_id": "ALL_VERIFIED_POOLS",
+    "details": "Greedy bipartite matching executed. 12 verified organs evaluated against 18 active waitlist candidates. 11 optimal 1:1 allocations derived without conflict.",
+    "verification_status": "Logged",
+    "hash_digest": "0ed4bc1bbfeeba6d178a0d1e237975200743ad21fcc17bab747379fc9757aafc"
+  }
+]
